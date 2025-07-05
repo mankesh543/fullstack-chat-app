@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import ImageViewerModal from "../components/imageViewerModal";
+import ImageViewerModal from "../components/ImageViewerModal";
 const ImageViewerContext = createContext();
 
 export const useImageViewer = () => useContext(ImageViewerContext);
