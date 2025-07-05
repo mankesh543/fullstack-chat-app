@@ -3,6 +3,8 @@ import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
+//yaha base url ka use socket.io k connection k lea use ho rha hS ocket connection development me http://localhost:5001 se banega
+//aur production me relative url ; authStore.js:- Socket.io (WebSocket connection)
 const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001" : "/";
 
 export const useAuthStore = create((set, get) => ({

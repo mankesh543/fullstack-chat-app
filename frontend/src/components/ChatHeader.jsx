@@ -1,19 +1,27 @@
 import { X } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useChatStore } from "../store/useChatStore";
+import {useImageViewer} from "../contexts/useImageViewerContext" // 👈 Import
 
 const ChatHeader = () => {
   const { selectedUser, setSelectedUser } = useChatStore();
   const { onlineUsers } = useAuthStore();
+  const { openImageViewer } = useImageViewer(); // 👈 Hook
+
+  const profilePic = selectedUser.profilePic || "/avatar.png";
 
   return (
     <div className="p-2.5 border-b border-base-300">
       <div className="flex items-center justify-between">
+        {/* Left: Avatar + Info */}
         <div className="flex items-center gap-3">
           {/* Avatar */}
           <div className="avatar">
-            <div className="size-10 rounded-full relative">
-              <img src={selectedUser.profilePic || "/avatar.png"} alt={selectedUser.fullName} />
+            <div
+              className="size-10 rounded-full relative cursor-pointer"
+              onClick={() => openImageViewer(profilePic)} // 👈 OnClick
+            >
+              <img src={profilePic} alt={selectedUser.fullName} />
             </div>
           </div>
 
@@ -34,4 +42,5 @@ const ChatHeader = () => {
     </div>
   );
 };
+
 export default ChatHeader;
